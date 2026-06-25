@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "584552570640",
+    "project_id": "ia-app-b9000",
+    "storage_bucket": "ia-app-b9000.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:584552570640:android:0b2eb154489c3f81b4cf95",
+        "android_client_info": {
+          "package_name": "Inspection.academy"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmGMPz2_Y0FLZZDV6lFmxbDazTIfEMlmI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:584552570640:android:46dca3d7784991b5b4cf95",
+        "android_client_info": {
+          "package_name": "com.inspectionacademy.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmGMPz2_Y0FLZZDV6lFmxbDazTIfEMlmI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

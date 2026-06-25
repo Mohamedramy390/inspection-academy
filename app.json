@@ -1,24 +1,61 @@
 {
   "expo": {
-    "name": "IA-app",
-    "slug": "IA-app",
+    "name": "Inspection Academy",
+    "slug": "inspection-academy",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#001430"
+    },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.inspectionacademy.app",
+      "infoPlist": {
+        "UIBackgroundModes": [
+          "remote-notification"
+        ]
+      }
     },
     "android": {
+      "package": "com.inspectionacademy.app",
+      "googleServicesFile": "./google-services.json",
       "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE",
+        "backgroundColor": "#001430",
         "foregroundImage": "./assets/android-icon-foreground.png",
         "backgroundImage": "./assets/android-icon-background.png",
         "monochromeImage": "./assets/android-icon-monochrome.png"
-      }
+      },
+      "permissions": [
+        "RECEIVE_BOOT_COMPLETED",
+        "VIBRATE",
+        "POST_NOTIFICATIONS"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [
+      "expo-dev-client",
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/icon.png",
+          "color": "#001430",
+          "sounds": [],
+          "androidMode": "default",
+          "androidCollapsedTitle": "Inspection Academy"
+        }
+      ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "0def43fb-e087-43f3-8dd8-dd5d09fa9bc6"
+      }
+    },
+    "owner": "mohamedramy390"
   }
 }
