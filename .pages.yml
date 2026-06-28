@@ -1,0 +1,202 @@
+media:
+  input: cms/media
+  output: /cms/media
+
+content:
+  - name: data
+    label: App Content & Settings
+    type: file
+    path: cms/content/data.json
+    fields:
+      - name: site
+        label: Site Settings
+        type: object
+        fields:
+          - name: name
+            label: Site Name
+            type: string
+          - name: tagline
+            label: Tagline
+            type: string
+          - name: description
+            label: Description
+            type: text
+          - name: heroImage
+            label: Hero Image
+            type: image
+          - name: address
+            label: Address
+            type: string
+          - name: phone
+            label: Phone
+            type: string
+          - name: email
+            label: Email
+            type: string
+
+      - name: courses
+        label: Courses
+        type: object
+        list: true
+        fields:
+          - name: id
+            label: ID
+            type: string
+          - name: title
+            label: Title
+            type: string
+          - name: slug
+            label: Slug
+            type: string
+          - name: category
+            label: Category
+            type: string
+          - name: icon
+            label: Icon
+            type: string
+          - name: type
+            label: Type
+            type: select
+            options:
+              - "Online"
+              - "Public"
+              - "In-House"
+          - name: duration
+            label: Duration
+            type: string
+          - name: daysCount
+            label: Days Count
+            type: string
+          - name: level
+            label: Level
+            type: select
+            options:
+              - "Beginner"
+              - "Intermediate"
+              - "Advanced"
+          - name: badge
+            label: Badge Text
+            type: string
+          - name: image
+            label: Hero Image
+            type: image
+          - name: description
+            label: Short Description
+            type: text
+          - name: fullDescription
+            label: Full Description
+            type: text
+          - name: objectives
+            label: Objectives
+            type: text
+          - name: materials
+            label: Required Materials
+            type: string
+            list: true
+          - name: agenda
+            label: Agenda
+            type: object
+            list: true
+            fields:
+              - name: day
+                label: Day
+                type: string
+              - name: topic
+                label: Topic
+                type: string
+          - name: trainings
+            label: Trainings
+            type: object
+            list: true
+            fields:
+              - name: dateRange
+                label: Date Range
+                type: string
+              - name: status
+                label: Status
+                type: select
+                options:
+                  - "open"
+                  - "closed"
+              - name: instructor
+                label: Instructor
+                type: string
+
+      - name: consultationServices
+        label: Consultation Services
+        type: object
+        list: true
+        fields:
+          - name: id
+            label: ID
+            type: string
+          - name: title
+            label: Title
+            type: string
+          - name: description
+            label: Description
+            type: text
+          - name: icon
+            label: Icon
+            type: select
+            options:
+              - "analytics-outline"
+              - "fitness-outline"
+              - "settings-outline"
+              - "checkmark-done-outline"
+              - "construct-outline"
+              - "warning-outline"
+              - "shield-checkmark-outline"
+              - "document-text-outline"
+
+      - name: homeGridServices
+        label: Home Grid Services
+        type: object
+        list: true
+        fields:
+          - name: icon
+            label: Icon
+            type: select
+            options:
+              - "analytics-outline"
+              - "fitness-outline"
+              - "settings-outline"
+              - "checkmark-done-outline"
+              - "construct-outline"
+              - "warning-outline"
+              - "shield-checkmark-outline"
+              - "document-text-outline"
+          - name: label
+            label: Label
+            type: string
+
+      - name: about
+        label: About Page
+        type: object
+        fields:
+          - name: headline
+            label: Headline
+            type: string
+          - name: body
+            label: Body Text
+            type: text
+          - name: image
+            label: Image
+            type: image
+          - name: mission
+            label: Mission
+            type: text
+          - name: vision
+            label: Vision
+            type: text
+          - name: stats
+            label: Stats
+            type: object
+            list: true
+            fields:
+              - name: value
+                label: Value
+                type: string
+              - name: label
+                label: Label
+                type: string
