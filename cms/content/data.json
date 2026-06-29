@@ -1,6 +1,6 @@
 {
   "site": {
-    "name": "Inspection Academy",
+    "name": "Inspection Academy test",
     "tagline": "Your Trusted Partner for Training Solutions & Consulting Services",
     "description": "Elevating industry standards through rigorous certification and expert consultation in oil, gas, and energy sectors.",
     "heroImage": "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=800",
@@ -17,24 +17,52 @@
       "icon": "construct-outline",
       "type": "Online",
       "duration": "40 Hours",
+      "daysCount": "19 Days",
       "level": "Intermediate",
+      "badge": "API Certification Program",
       "image": "https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?w=800",
       "description": "Comprehensive certification preparation for pressure vessel inspection, repair, alteration, and rerating.",
       "fullDescription": "Advanced technical training designed to prepare experienced professionals for the API 510 certification exam, ensuring structural integrity and safety compliance.",
-      "badge": "API Certification Program",
-      "daysCount": "19 Days",
       "objectives": "Master the calculations for corrosion rates, remaining life, and inspection intervals. Understand welding procedures, non-destructive examination (NDE) methods, and the evaluation of flaws in pressure vessels operating under the API 510 code.",
-      "materials": ["API 510 Code Book (Latest Edition)", "ASME Section VIII, Div 1 & ASME Section IX", "Scientific Calculator"],
+      "materials": [
+        "API 510 Code Book (Latest Edition)",
+        "ASME Section VIII, Div 1 & ASME Section IX",
+        "Scientific Calculator"
+      ],
       "agenda": [
-        { "day": "Day 1", "topic": "Introduction & Code Scope" },
-        { "day": "Day 2-3", "topic": "Calculations & Damage Mechanisms" },
-        { "day": "Day 4-5", "topic": "NDE Methods & Weld Evaluation" },
-        { "day": "Day 6", "topic": "Exam Preparation & Mock Test" }
+        {
+          "day": "Day 1",
+          "topic": "Introduction & Code Scope"
+        },
+        {
+          "day": "Day 2-3",
+          "topic": "Calculations & Damage Mechanisms"
+        },
+        {
+          "day": "Day 4-5",
+          "topic": "NDE Methods & Weld Evaluation"
+        },
+        {
+          "day": "Day 6",
+          "topic": "Exam Preparation & Mock Test"
+        }
       ],
       "trainings": [
-        { "dateRange": "March 29, 2026", "status": "closed", "instructor": "IA Instructors" },
-        { "dateRange": "July 2026",      "status": "open",   "instructor": "IA Instructors" },
-        { "dateRange": "November 2026",  "status": "open",   "instructor": "IA Instructors" }
+        {
+          "dateRange": "March 29, 2026",
+          "status": "closed",
+          "instructor": "IA Instructors"
+        },
+        {
+          "dateRange": "July 2026",
+          "status": "open",
+          "instructor": "IA Instructors"
+        },
+        {
+          "dateRange": "November 2026",
+          "status": "open",
+          "instructor": "IA Instructors"
+        }
       ]
     },
     {
@@ -45,23 +73,47 @@
       "icon": "git-branch-outline",
       "type": "Public",
       "duration": "40 Hours",
+      "daysCount": "5 Days",
       "level": "Intermediate",
+      "badge": "API Certification Program",
       "image": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800",
       "description": "In-depth training for the inspection, repair, alteration, and rerating of in-service piping systems.",
       "fullDescription": "Covers all aspects of piping inspection including corrosion monitoring, damage mechanisms, and repair methods per API 570 standard.",
-      "badge": "API Certification Program",
-      "daysCount": "5 Days",
       "objectives": "Understand piping system damage mechanisms, corrosion monitoring, and inspection methodologies required for API 570 certification.",
-      "materials": ["API 570 Code Book", "ASME B31.3", "Scientific Calculator"],
+      "materials": [
+        "API 570 Code Book",
+        "ASME B31.3",
+        "Scientific Calculator"
+      ],
       "agenda": [
-        { "day": "Day 1", "topic": "Introduction & Piping Components" },
-        { "day": "Day 2-3", "topic": "Damage Mechanisms & Monitoring" },
-        { "day": "Day 4", "topic": "Repair & Alteration Procedures" },
-        { "day": "Day 5", "topic": "Exam Preparation" }
+        {
+          "day": "Day 1",
+          "topic": "Introduction & Piping Components"
+        },
+        {
+          "day": "Day 2-3",
+          "topic": "Damage Mechanisms & Monitoring"
+        },
+        {
+          "day": "Day 4",
+          "topic": "Repair & Alteration Procedures"
+        },
+        {
+          "day": "Day 5",
+          "topic": "Exam Preparation"
+        }
       ],
       "trainings": [
-        { "dateRange": "August 2026",    "status": "open",   "instructor": "IA Instructors" },
-        { "dateRange": "December 2026",  "status": "open",   "instructor": "IA Instructors" }
+        {
+          "dateRange": "August 2026",
+          "status": "open",
+          "instructor": "IA Instructors"
+        },
+        {
+          "dateRange": "December 2026",
+          "status": "open",
+          "instructor": "IA Instructors"
+        }
       ]
     },
     {
@@ -72,39 +124,105 @@
       "icon": "pulse-outline",
       "type": "In-House",
       "duration": "32 Hours",
+      "daysCount": "4 Days",
       "level": "Advanced",
+      "badge": "NDT Advanced Program",
       "image": "https://images.unsplash.com/photo-1581093451175-e26b5ab58f76?w=800",
       "description": "Hands-on PAUT training covering sector scans, linear scans, and advanced flaw characterization.",
       "fullDescription": "Master the latest phased array ultrasonic testing techniques used in weld inspection, corrosion mapping, and composite testing.",
-      "badge": "NDT Advanced Program",
-      "daysCount": "4 Days",
       "objectives": "Learn to operate PAUT equipment, configure scans, and interpret results for welds and complex geometries.",
-      "materials": ["PAUT Equipment (provided)", "AWS D1.1", "ASME Section V"],
+      "materials": [
+        "PAUT Equipment (provided)",
+        "AWS D1.1",
+        "ASME Section V"
+      ],
       "agenda": [
-        { "day": "Day 1", "topic": "PAUT Principles & Equipment" },
-        { "day": "Day 2", "topic": "Scan Configurations" },
-        { "day": "Day 3", "topic": "Practical Exercises" },
-        { "day": "Day 4", "topic": "Data Analysis & Reporting" }
+        {
+          "day": "Day 1",
+          "topic": "PAUT Principles & Equipment"
+        },
+        {
+          "day": "Day 2",
+          "topic": "Scan Configurations"
+        },
+        {
+          "day": "Day 3",
+          "topic": "Practical Exercises"
+        },
+        {
+          "day": "Day 4",
+          "topic": "Data Analysis & Reporting"
+        }
       ],
       "trainings": [
-        { "dateRange": "October 2026",  "status": "open",   "instructor": "IA Instructors" },
-        { "dateRange": "February 2027", "status": "open",   "instructor": "IA Instructors" }
+        {
+          "dateRange": "October 2026",
+          "status": "open",
+          "instructor": "IA Instructors"
+        },
+        {
+          "dateRange": "February 2027",
+          "status": "open",
+          "instructor": "IA Instructors"
+        }
       ]
     }
   ],
   "consultationServices": [
-    { "id": "rbi", "icon": "analytics-outline", "title": "Risk-Based Inspection (RBI)", "description": "Optimize inspection intervals and resources by prioritizing critical equipment based on risk assessment methodologies." },
-    { "id": "ffs", "icon": "fitness-outline", "title": "Fitness-for-Service (FFS)", "description": "Quantitative engineering evaluations to demonstrate the structural integrity of in-service components containing flaws." },
-    { "id": "audit", "icon": "settings-outline", "title": "Equipment Audit", "description": "Comprehensive audit of plant equipment to identify deterioration, code compliance gaps, and maintenance needs." },
-    { "id": "compliance", "icon": "checkmark-done-outline", "title": "Compliance Check", "description": "Regulatory compliance assessment against international standards like API, ASME, and OSHA requirements." },
-    { "id": "structural", "icon": "construct-outline", "title": "Structural Integrity", "description": "Assessment and life extension programs for aging structures in refining, petrochemical, and power generation." },
-    { "id": "risk", "icon": "warning-outline", "title": "Risk Assessment", "description": "Systematic process to evaluate hazards, quantify risks, and develop mitigation strategies for industrial facilities." }
+    {
+      "id": "rbi",
+      "title": "Risk-Based Inspection (RBI)",
+      "description": "Optimize inspection intervals and resources by prioritizing critical equipment based on risk assessment methodologies.",
+      "icon": "analytics-outline"
+    },
+    {
+      "id": "ffs",
+      "title": "Fitness-for-Service (FFS)",
+      "description": "Quantitative engineering evaluations to demonstrate the structural integrity of in-service components containing flaws.",
+      "icon": "fitness-outline"
+    },
+    {
+      "id": "audit",
+      "title": "Equipment Audit",
+      "description": "Comprehensive audit of plant equipment to identify deterioration, code compliance gaps, and maintenance needs.",
+      "icon": "settings-outline"
+    },
+    {
+      "id": "compliance",
+      "title": "Compliance Check",
+      "description": "Regulatory compliance assessment against international standards like API, ASME, and OSHA requirements.",
+      "icon": "checkmark-done-outline"
+    },
+    {
+      "id": "structural",
+      "title": "Structural Integrity",
+      "description": "Assessment and life extension programs for aging structures in refining, petrochemical, and power generation.",
+      "icon": "construct-outline"
+    },
+    {
+      "id": "risk",
+      "title": "Risk Assessment",
+      "description": "Systematic process to evaluate hazards, quantify risks, and develop mitigation strategies for industrial facilities.",
+      "icon": "warning-outline"
+    }
   ],
   "homeGridServices": [
-    { "icon": "settings-outline", "label": "Equipment Audit" },
-    { "icon": "checkmark-done-outline", "label": "Compliance Check" },
-    { "icon": "construct-outline", "label": "Structural Integrity" },
-    { "icon": "warning-outline", "label": "Risk Assessment" }
+    {
+      "icon": "settings-outline",
+      "label": "Equipment Audit"
+    },
+    {
+      "icon": "checkmark-done-outline",
+      "label": "Compliance Check"
+    },
+    {
+      "icon": "construct-outline",
+      "label": "Structural Integrity"
+    },
+    {
+      "icon": "warning-outline",
+      "label": "Risk Assessment"
+    }
   ],
   "about": {
     "headline": "Precision in Every Inspection.",
@@ -113,10 +231,22 @@
     "mission": "To equip industrial professionals with uncompromising technical expertise, ensuring the structural integrity and safety of global energy infrastructure through rigorous training.",
     "vision": "To be the world's most trusted provider of inspection and integrity management training, recognized for measurable impact on industry safety records.",
     "stats": [
-      { "value": "5,000+", "label": "Certified Professionals" },
-      { "value": "20+", "label": "Countries Served" },
-      { "value": "98%", "label": "Pass Rate" },
-      { "value": "15+", "label": "Years of Excellence" }
+      {
+        "value": "5,000+",
+        "label": "Certified Professionals"
+      },
+      {
+        "value": "20+",
+        "label": "Countries Served"
+      },
+      {
+        "value": "98%",
+        "label": "Pass Rate"
+      },
+      {
+        "value": "15+",
+        "label": "Years of Excellence"
+      }
     ]
   }
 }
