@@ -79,7 +79,7 @@ export async function registerForPushNotificationsAsync() {
       importance: Notifications.AndroidImportance.MAX,
       vibrationPattern: [0, 250, 250, 250],
       lightColor: '#001430',
-      sound: 'default',
+      sound: true,
     });
 
     await Notifications.setNotificationChannelAsync('courses', {
@@ -125,7 +125,7 @@ export async function sendLocalTestNotification(title = 'New Course Available!',
     content: {
       title,
       body,
-      sound: 'default',
+      sound: true,
       data: { screen: 'Courses' },
     },
     trigger: { seconds: 2 },
