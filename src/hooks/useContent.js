@@ -1,10 +1,9 @@
 import { useState, useEffect } from 'react';
-import content from '../../cms/content/data.json';
+
+const DATA_URL = 'https://mohamedramy390.github.io/inspection-academy/cms/content/data.json';
 
 /**
- * useContent — hook to access CMS content data.
- * In production, swap the static import with an API fetch from your
- * Decap CMS Git backend or Netlify Functions endpoint.
+ * useContent — hook to access CMS content data from GitHub Pages.
  *
  * Usage:
  *   const { data, loading, error } = useContent();
@@ -16,17 +15,36 @@ const useContent = (section = null) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    try {
-      // Simulates async fetch — replace with real fetch for remote CMS
-      setTimeout(() => {
-        const result = section ? content[section] : content;
-        setData(result);
-        setLoading(false);
-      }, 0);
-    } catch (err) {
-      setError(err.message);
-      setLoading(false);
-    }
+    let isMounted = true;
+
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        // Using cache busting to ensure we always get the latest data from the CMS
+        const response = await fetch(`${DATA_URL}?t=${new Date().getTime()}`);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const json = await response.json();
+        
+        if (isMounted) {
+          const result = section ? json[section] : json;
+          setData(result);
+          setLoading(false);
+        }
+      } catch (err) {
+        if (isMounted) {
+          setError(err.message);
+          setLoading(false);
+        }
+      }
+    };
+
+    fetchData();
+
+    return () => {
+      isMounted = false;
+    };
   }, [section]);
 
   return { data, loading, error };

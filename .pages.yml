@@ -22,8 +22,8 @@ content:
             label: Description
             type: text
           - name: heroImage
-            label: Hero Image
-            type: image
+            label: Hero Image URL
+            type: string
           - name: address
             label: Address
             type: string
@@ -58,9 +58,10 @@ content:
             label: Type
             type: select
             options:
-              - "Online"
-              - "Public"
-              - "In-House"
+              values:
+                - "Online"
+                - "Public"
+                - "In-House"
           - name: duration
             label: Duration
             type: string
@@ -71,15 +72,16 @@ content:
             label: Level
             type: select
             options:
-              - "Beginner"
-              - "Intermediate"
-              - "Advanced"
+              values:
+                - "Beginner"
+                - "Intermediate"
+                - "Advanced"
           - name: badge
             label: Badge Text
             type: string
           - name: image
-            label: Hero Image
-            type: image
+            label: Hero Image URL
+            type: string
           - name: description
             label: Short Description
             type: text
@@ -116,8 +118,9 @@ content:
                 label: Status
                 type: select
                 options:
-                  - "open"
-                  - "closed"
+                  values:
+                    - "open"
+                    - "closed"
               - name: instructor
                 label: Instructor
                 type: string
@@ -140,14 +143,15 @@ content:
             label: Icon
             type: select
             options:
-              - "analytics-outline"
-              - "fitness-outline"
-              - "settings-outline"
-              - "checkmark-done-outline"
-              - "construct-outline"
-              - "warning-outline"
-              - "shield-checkmark-outline"
-              - "document-text-outline"
+              values:
+                - "analytics-outline"
+                - "fitness-outline"
+                - "settings-outline"
+                - "checkmark-done-outline"
+                - "construct-outline"
+                - "warning-outline"
+                - "shield-checkmark-outline"
+                - "document-text-outline"
 
       - name: homeGridServices
         label: Home Grid Services
@@ -158,14 +162,15 @@ content:
             label: Icon
             type: select
             options:
-              - "analytics-outline"
-              - "fitness-outline"
-              - "settings-outline"
-              - "checkmark-done-outline"
-              - "construct-outline"
-              - "warning-outline"
-              - "shield-checkmark-outline"
-              - "document-text-outline"
+              values:
+                - "analytics-outline"
+                - "fitness-outline"
+                - "settings-outline"
+                - "checkmark-done-outline"
+                - "construct-outline"
+                - "warning-outline"
+                - "shield-checkmark-outline"
+                - "document-text-outline"
           - name: label
             label: Label
             type: string
@@ -181,8 +186,8 @@ content:
             label: Body Text
             type: text
           - name: image
-            label: Image
-            type: image
+            label: Image URL
+            type: string
           - name: mission
             label: Mission
             type: text
