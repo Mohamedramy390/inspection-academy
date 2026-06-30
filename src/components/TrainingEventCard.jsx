@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Linking, Alert } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { Colors, Typography, BorderRadius, Shadows, Spacing } from '../constants/theme';
 
@@ -11,14 +11,32 @@ import { Colors, Typography, BorderRadius, Shadows, Spacing } from '../constants
  *  - course {object}  Matched course data  { title, daysCount, type, level }
  *  - onPress {fn}     Navigates to CourseDetailsScreen
  */
+const WA_NUMBER = process.env.EXPO_PUBLIC_WA_NUMBER || '201023467096';
+
 const TrainingEventCard = ({ event, course, onPress }) => {
   const { dateRange, status = 'open', instructor } = event;
-  const title    = course?.title    || event.courseId;
+  const title     = course?.title    || event.courseId;
   const daysCount = course?.daysCount || '';
-  const type     = course?.type     || '';
-  const level    = course?.level    || '';
+  const type      = course?.type     || '';
+  const level     = course?.level    || '';
 
   const isOpen = status?.toLowerCase() === 'open';
+
+  const handleQuickInquiry = () => {
+    const message =
+      `Hello Inspection Academy! 👋\n\n` +
+      `I'm interested in registering for the following training:\n` +
+      `📚 *${title}*\n` +
+      `📅 Date: ${dateRange}\n\n` +
+      `Please provide registration details and fees.\n\nThank you!`;
+
+    const url = `whatsapp://send?phone=${WA_NUMBER}&text=${encodeURIComponent(message)}`;
+    Linking.openURL(url).catch(() => {
+      Linking.openURL(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(message)}`).catch(() => {
+        Alert.alert('Error', 'Make sure WhatsApp is installed on your device.');
+      });
+    });
+  };
 
   return (
     <TouchableOpacity
@@ -68,7 +86,8 @@ const TrainingEventCard = ({ event, course, onPress }) => {
         </View>
 
         {isOpen && (
-          <TouchableOpacity style={styles.inquiryBtn} onPress={onPress} activeOpacity={0.8}>
+          <TouchableOpacity style={styles.inquiryBtn} onPress={handleQuickInquiry} activeOpacity={0.8}>
+            <Ionicons name="logo-whatsapp" size={14} color="#fff" />
             <Text style={styles.inquiryBtnText}>Quick Inquiry</Text>
           </TouchableOpacity>
         )}
@@ -160,14 +179,17 @@ const styles = StyleSheet.create({
 
   // Quick Inquiry button
   inquiryBtn: {
-    backgroundColor: Colors.primary,
-    paddingHorizontal: 18,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+    backgroundColor: '#25D366',
+    paddingHorizontal: 14,
     paddingVertical: 9,
     borderRadius: BorderRadius.sm,
   },
   inquiryBtnText: {
     ...Typography.labelMd,
-    color: Colors.onPrimary,
+    color: '#fff',
     fontSize: 13,
   },
 });

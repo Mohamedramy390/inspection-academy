@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import {
   View,
   Text,
@@ -8,6 +8,9 @@ import {
   TouchableOpacity,
   Share,
   ActivityIndicator,
+  TextInput,
+  Linking,
+  Alert,
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
@@ -32,7 +35,19 @@ const CourseDetailsScreen = () => {
   const insets = useSafeAreaInsets();
   const { courseId } = route.params;
 
+  const scrollViewRef = useRef(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [form, setForm] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    country: '',
+    company: '',
+    comment: ''
+  });
+
   const { data: courses, loading } = useContent('courses');
+  const { data: site } = useContent('site');
   const course = courses?.find((c) => c.id === courseId);
 
   const handleShare = async () => {
@@ -40,6 +55,90 @@ const CourseDetailsScreen = () => {
     await Share.share({
       message: `Check out this course: ${course.title} — Inspection Academy`,
     });
+  };
+
+  const WA_NUMBER = process.env.EXPO_PUBLIC_WA_NUMBER || '201023467096';
+
+  const openWhatsApp = (message) => {
+    const url = `whatsapp://send?phone=${WA_NUMBER}&text=${encodeURIComponent(message)}`;
+    Linking.openURL(url).catch(() => {
+      Linking.openURL(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(message)}`).catch(() => {
+        Alert.alert('Error', 'Make sure WhatsApp is installed on your device.');
+      });
+    });
+  };
+
+  const handleWhatsApp = () => {
+    const message =
+      `Hello Inspection Academy! 👋\n\n` +
+      `I'm interested in the following course:\n` +
+      `📚 *${course?.title || courseId}*\n\n` +
+      `Please send me more details about dates, fees, and registration.\n\n` +
+      `Thank you!`;
+    openWhatsApp(message);
+  };
+
+  const handleQuickInquiry = () => {
+    const message =
+      `Hello Inspection Academy! 👋\n\n` +
+      `I have a quick inquiry about:\n` +
+      `📚 *${course?.title || courseId}*\n\n` +
+      `Could you please assist me?`;
+    openWhatsApp(message);
+  };
+
+  const handleRegisterNowClick = () => {
+    scrollViewRef.current?.scrollToEnd({ animated: true });
+  };
+
+  const handleSubmit = async () => {
+    if (!form.name || !form.email || !form.phone || !form.country || !form.comment) {
+      Alert.alert('Required Fields', 'Please fill in all required fields marked with *');
+      return;
+    }
+    
+    setIsSubmitting(true);
+    
+    // ── EmailJS credentials ──────────────────────────────────────────────────
+    const EMAILJS_SERVICE_ID  = process.env.EXPO_PUBLIC_EMAILJS_SERVICE_ID;
+    const EMAILJS_TEMPLATE_ID = process.env.EXPO_PUBLIC_EMAILJS_TEMPLATE_ID;
+    const EMAILJS_PUBLIC_KEY  = process.env.EXPO_PUBLIC_EMAILJS_PUBLIC_KEY;
+    const EMAILJS_PRIVATE_KEY = process.env.EXPO_PUBLIC_EMAILJS_PRIVATE_KEY;
+    // ────────────────────────────────────────────────────────────────────────
+
+    try {
+      const response = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
+        method: "POST",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          service_id:  EMAILJS_SERVICE_ID,
+          template_id: EMAILJS_TEMPLATE_ID,
+          user_id:     EMAILJS_PUBLIC_KEY,
+          accessToken: EMAILJS_PRIVATE_KEY,
+          template_params: {
+            course:   course?.title || courseId,
+            name:     form.name,
+            email:    form.email,
+            phone:    form.phone,
+            country:  form.country,
+            company:  form.company || 'N/A',
+            message:  form.comment,
+          },
+        }),
+      });
+
+      if (response.ok) {
+        Alert.alert('Success', 'Your registration has been sent successfully! We will contact you soon.');
+        setForm({ name: '', email: '', phone: '', country: '', company: '', comment: '' });
+      } else {
+        const text = await response.text();
+        throw new Error(text);
+      }
+    } catch (error) {
+      Alert.alert('Error', 'Failed to send your request. Please check your EmailJS credentials in the code or try again later.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (loading) {
@@ -82,6 +181,7 @@ const CourseDetailsScreen = () => {
       </View>
 
       <ScrollView
+        ref={scrollViewRef}
         style={styles.scroll}
         contentContainerStyle={{ paddingBottom: insets.bottom + 160 }}
         showsVerticalScrollIndicator={false}
@@ -152,23 +252,91 @@ const CourseDetailsScreen = () => {
             ))}
           </View>
         )}
+
+        {/* ── Registration Form ── */}
+        <View style={styles.formSection}>
+          <Text style={styles.formTitle}>Register for this Course</Text>
+          <Text style={styles.formSubtitle}>Fill out the form below and we will contact you shortly.</Text>
+          
+          <TextInput
+            style={styles.input}
+            placeholder="Name *"
+            placeholderTextColor={Colors.onSurfaceVariant}
+            value={form.name}
+            onChangeText={(text) => setForm({ ...form, name: text })}
+          />
+          <TextInput
+            style={styles.input}
+            placeholder="Email *"
+            keyboardType="email-address"
+            placeholderTextColor={Colors.onSurfaceVariant}
+            value={form.email}
+            onChangeText={(text) => setForm({ ...form, email: text })}
+          />
+          <TextInput
+            style={styles.input}
+            placeholder="Phone (WhatsApp) *"
+            keyboardType="phone-pad"
+            placeholderTextColor={Colors.onSurfaceVariant}
+            value={form.phone}
+            onChangeText={(text) => setForm({ ...form, phone: text })}
+          />
+          <TextInput
+            style={styles.input}
+            placeholder="Country *"
+            placeholderTextColor={Colors.onSurfaceVariant}
+            value={form.country}
+            onChangeText={(text) => setForm({ ...form, country: text })}
+          />
+          <TextInput
+            style={styles.input}
+            placeholder="Company"
+            placeholderTextColor={Colors.onSurfaceVariant}
+            value={form.company}
+            onChangeText={(text) => setForm({ ...form, company: text })}
+          />
+          <TextInput
+            style={[styles.input, styles.textArea]}
+            placeholder="Comment or Message *"
+            placeholderTextColor={Colors.onSurfaceVariant}
+            multiline
+            numberOfLines={4}
+            textAlignVertical="top"
+            value={form.comment}
+            onChangeText={(text) => setForm({ ...form, comment: text })}
+          />
+          <PrimaryButton
+            label={isSubmitting ? "Sending..." : "Submit Registration"}
+            onPress={handleSubmit}
+            style={styles.submitBtn}
+            disabled={isSubmitting}
+          />
+
+          {/* Quick Inquiry via WhatsApp */}
+          <TouchableOpacity style={styles.quickInquiryBtn} onPress={handleQuickInquiry}>
+            <Ionicons name="logo-whatsapp" size={18} color="#2E7D32" />
+            <Text style={styles.quickInquiryText}>Quick Inquiry via WhatsApp</Text>
+            <Ionicons name="arrow-forward" size={14} color="#2E7D32" />
+          </TouchableOpacity>
+        </View>
       </ScrollView>
 
       {/* Bottom CTA */}
       <View style={[styles.cta, { paddingBottom: insets.bottom + 8 }]}>
         <PrimaryButton
-          label="Request Info"
+          label="WhatsApp"
           variant="tonal"
-          onPress={() => navigation.navigate(ROUTES.CONTACT)}
-          style={styles.ctaBtn}
-          icon={<Ionicons name="information-circle-outline" size={16} color={Colors.onSecondaryContainer} />}
+          onPress={handleWhatsApp}
+          style={[styles.ctaBtn, { backgroundColor: '#E8F5E9' }]}
+          icon={<Ionicons name="logo-whatsapp" size={16} color="#2E7D32" />}
+          textStyle={{ color: '#2E7D32' }}
         />
         <PrimaryButton
           label="Register Now"
           variant="filled"
-          onPress={() => navigation.navigate(ROUTES.CONTACT)}
+          onPress={handleRegisterNowClick}
           style={styles.ctaBtn}
-          icon={<Ionicons name="arrow-forward" size={16} color={Colors.onPrimary} />}
+          icon={<Ionicons name="arrow-down" size={16} color={Colors.onPrimary} />}
         />
       </View>
     </View>
@@ -359,6 +527,67 @@ const styles = StyleSheet.create({
   },
   ctaBtn: {
     flex: 1,
+  },
+  // Form
+  formSection: {
+    paddingHorizontal: Spacing.containerPadding,
+    paddingTop: 24,
+    paddingBottom: 20,
+    backgroundColor: Colors.surfaceContainerLowest,
+    marginTop: 16,
+    marginHorizontal: Spacing.containerPadding,
+    borderRadius: BorderRadius.lg,
+    borderWidth: 1,
+    borderColor: Colors.outlineVariant,
+    ...Shadows.sm,
+  },
+  formTitle: {
+    ...Typography.headlineMd,
+    color: Colors.primary,
+    marginBottom: 4,
+    fontSize: 20,
+  },
+  formSubtitle: {
+    ...Typography.bodyMd,
+    color: Colors.onSurfaceVariant,
+    marginBottom: 20,
+  },
+  input: {
+    backgroundColor: Colors.surface,
+    borderWidth: 1,
+    borderColor: Colors.outlineVariant,
+    borderRadius: BorderRadius.md,
+    paddingHorizontal: 16,
+    paddingVertical: 14,
+    marginBottom: 12,
+    ...Typography.bodyMd,
+    color: Colors.onSurface,
+  },
+  textArea: {
+    height: 100,
+    paddingTop: 14,
+  },
+  submitBtn: {
+    marginTop: 8,
+  },
+  quickInquiryBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 8,
+    marginTop: 16,
+    paddingVertical: 12,
+    paddingHorizontal: 16,
+    borderRadius: BorderRadius.md,
+    borderWidth: 1.5,
+    borderColor: '#2E7D32',
+    backgroundColor: '#F1F8E9',
+  },
+  quickInquiryText: {
+    ...Typography.labelMd,
+    color: '#2E7D32',
+    fontSize: 14,
+    fontWeight: '600',
   },
 });
 

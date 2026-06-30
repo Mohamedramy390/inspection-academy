@@ -20,6 +20,7 @@ const PrimaryButton = ({
   fullWidth = false,
   disabled = false,
   style,
+  textStyle: customTextStyle,
 }) => {
   const containerStyle = [
     styles.base,
@@ -37,6 +38,7 @@ const PrimaryButton = ({
     variant === 'outlined' && styles.labelOutlined,
     variant === 'tonal' && styles.labelTonal,
     disabled && styles.labelDisabled,
+    customTextStyle,
   ];
 
   return (

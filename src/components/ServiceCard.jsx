@@ -10,9 +10,9 @@ import { Colors, Typography, BorderRadius, Shadows } from '../constants/theme';
  *  - label {string}   Card label text
  *  - onPress {fn}     Optional press handler
  */
-const ServiceCard = ({ icon, label, onPress }) => (
+const ServiceCard = ({ icon, label, onPress, style }) => (
   <TouchableOpacity
-    style={styles.card}
+    style={[styles.card, style]}
     onPress={onPress}
     activeOpacity={0.8}
     accessibilityRole="button"

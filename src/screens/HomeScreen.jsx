@@ -159,6 +159,7 @@ const HomeScreen = () => {
                 icon={svc.icon}
                 label={svc.label}
                 onPress={() => navigation.navigate(ROUTES.CONSULTATION)}
+                style={{ width: '48%', flex: 0 }}
               />
             ))}
           </View>
@@ -195,15 +196,20 @@ const styles = StyleSheet.create({
   heroOverlay: {
     ...StyleSheet.absoluteFillObject,
     backgroundColor: Colors.primary,
-    opacity: 0.8,
+    opacity: 0.4, // Reduced overall opacity so the background image shows clearly
   },
   heroContent: {
-    padding: Spacing.containerPadding,
+    padding: 24,
     gap: 16,
+    backgroundColor: 'rgba(0, 20, 48, 0.75)', // The new distinct layer just behind the text
+    margin: Spacing.containerPadding,
+    borderRadius: BorderRadius.lg,
+    borderWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.1)', // Subtle border for a glass effect
   },
   heroTitle: {
     ...Typography.displayLgMobile,
-    color: Colors.onPrimary,
+    color: '#ffffff', // Ensure pure white text on the dark layer
   },
   heroSubtitle: {
     ...Typography.bodyLg,
